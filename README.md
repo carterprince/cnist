@@ -3,7 +3,7 @@
 solving MNIST in C from scratch (libc only)
 
 ```
-gcc main.c -o main
+gcc -O2 main.c -o main
 ./main
 ```
 

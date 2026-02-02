@@ -24,7 +24,7 @@ double random_weight() {
     return ((random() / (double)RAND_MAX) - 0.5) * 0.25;
 }
 
-void main() {
+int main() {
     FILE *train_images_file = fopen("mnist/train-images-idx3-ubyte", "r");
 
     // skip magic
@@ -148,7 +148,6 @@ void main() {
 
     for (int TRAIN_IMAGE = 0; TRAIN_IMAGE < num_images; TRAIN_IMAGE++) {
 
-        printf("training on example %d\n", TRAIN_IMAGE);
 
         for (int i = 0; i < HIDDEN1_SIZE; i++) {
             activations1[i] = 0;
@@ -208,14 +207,15 @@ void main() {
             error = activations3[i] - target[i];
             errors3[i] = error;
             mse += errors3[i] * errors3[i];
-            if (TRAIN_IMAGE % 100 == 0)
-                printf("%d: %f\n", i, activations3[i]);
+            // if (TRAIN_IMAGE % 100 == 0)
+            // printf("%d: %f\n", i, activations3[i]);
         }
         mse = mse / OUTPUT_SIZE;
         if (TRAIN_IMAGE % 100 == 0) {
-            printf("true label: %d, ", train_labels[TRAIN_IMAGE]);
-            printf("predicted label: %d\n", max_output_label);
-            printf("mse: %f\n", mse);
+            // printf("true label: %d, ", train_labels[TRAIN_IMAGE]);
+            // printf("predicted label: %d\n", max_output_label);
+            // printf("mse: %f\n", mse);
+            printf("training on example %d\n", TRAIN_IMAGE);
         }
 
         for (int i = 0; i < HIDDEN2_SIZE; i++) {
@@ -342,4 +342,6 @@ void main() {
             printf("mse: %f\n", mse);
         }
     }
+
+    return 0;
 }
